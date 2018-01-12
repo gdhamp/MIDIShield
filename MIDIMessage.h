@@ -65,6 +65,15 @@ public:
             data[i+1] = buf[i];
     }
 
+	void FillFromBuff(uint8_t *buf)
+	{
+        // first byte keeped for retro-compatibility
+        data[0]=0;
+
+        for (int i = 0; i < 4; i++)
+            data[i+1] = buf[i];
+    }
+
     // create messages
 
     /** Create a NoteOff message

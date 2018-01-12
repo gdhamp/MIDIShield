@@ -106,9 +106,14 @@ void MIDIInput::gatherMessage(uint8_t byte) {
 
 	if (bytesRemaining == 0) {
 		if (valid) {
-			MIDIMessage _MIDIMessage(newMsgBuf);
-			put(&_MIDIMessage);
-			newMsgIndex = 0;
+			MIDIMessage *_MIDIMessageMail = alloc();
+			
+			if (_MIDIMessageMail) {
+				_MIDIMessageMail->FillFromBuff(newMsgBuf);
+				put(_MIDIMessageMail);
+
+				newMsgIndex = 0;
+			}
 		}
 	}
 }
